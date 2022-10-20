@@ -1,0 +1,25 @@
+import pymongo
+
+# Provide the mongodb localhost url to connect python to mongodb.
+client = pymongo.MongoClient("mongodb://0.0.0.0:27020/mydb")
+
+# Database Name
+dataBase = client["iNeuron_AI"]
+
+# Collection  Name
+collection = dataBase['Products']
+
+# Sample data
+d = {'companyName': 'iNeuron',
+     'product': 'Affordable AI',
+     'courseOffered': 'Machine Learning with Deployment'}
+
+# Insert above records in the collection
+rec = collection.insert_one(d)
+
+# Lets Verify all the record at once present in the record with all the fields
+all_record = collection.find()
+
+# Printing all records in present in the collection
+for idx, record in enumerate(all_record):
+     print(f"{idx}: {record}")
